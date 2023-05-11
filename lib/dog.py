@@ -17,17 +17,21 @@ def get_all(session):
 
 def find_by_name(session, name):
     query = session.query(Dog).filter(Dog.name == name)
-    return query.first()
+    return query.one()
 
 
 def find_by_id(session, id):
     query = session.query(Dog).filter(Dog.id == id)
-    return query.first()
+    return query.one()
 
 
 def find_by_name_and_breed(session, name, breed):
-    pass
+    query = session.query(Dog).filter(Dog.name == name, Dog.breed == breed)
+    return query.one()
 
 
 def update_breed(session, dog, breed):
-    pass
+    session.query(Dog).filter(Dog.id == dog.id).update(
+        {Dog.breed: breed}, synchronize_session=False
+    )
+    session.commit()

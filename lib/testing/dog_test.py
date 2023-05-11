@@ -2,7 +2,6 @@ import os
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-import ipdb
 
 from dog import (
     create_table,
@@ -145,6 +144,3 @@ class TestDog:
         assert updated_record.breed == "bulldog"
 
         os.remove(db_dir)
-
-
-ipdb.set_trace()
